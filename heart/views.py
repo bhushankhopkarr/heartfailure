@@ -10,7 +10,7 @@ from .models import FormSubmission
 import pickle
 import os
 
-with open("lgbmclf.pkl", 'rb') as file:
+with open("heart/lgbmclf.pkl", 'rb') as file:
     classifier = pickle.load(file)
 
 # Create your views here.
