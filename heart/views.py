@@ -29,18 +29,46 @@ def register(request):
     return render(request, "register.html")
 
 
+# def login_page(request):    
+#     error_message = None  
+#     if request.method == 'POST':
+#         login_data = request.POST
+#         # stored_data = Person.objects.filter(email=login_data["email"]).first()
+#         user = User.objects.filter(username = login_data['username']).first()
+#         if user is not None:
+#             user = authenticate(username = login_data["username"], password = login_data["password"])
+#             if user is not None: 
+#                 login(request, user)
+#                 print("success")
+#                 return redirect("/heart/dashboard")
+#             else:
+#                 error_message = "Invalid username or password."
+#         else:
+#             error_message = "Invalid username or password."
+#     return render(request, "login.html", {"error_message": error_message})
+
 def login_page(request):
+    error_message = None
+    
     if request.method == 'POST':
         login_data = request.POST
-        # stored_data = Person.objects.filter(email=login_data["email"]).first()
-        user = User.objects.filter(username = login_data['username']).first()
-        if user is not None:
-            user = authenticate(username = login_data["username"], password = login_data["password"])
-            if user is not None: 
+        username = login_data.get('username')
+        password = login_data.get('password')
+        
+        # Check if username and password are provided
+        if not username or not password:
+            error_message = "Please provide both username and password."
+        else:
+            # Authenticate user
+            user = authenticate(username=username, password=password)
+            if user is not None:
                 login(request, user)
                 print("success")
                 return redirect("/heart/dashboard")
-    return render(request, "login.html")
+            else:
+                error_message = "Invalid username or password."
+    
+    return render(request, "login.html", {"error_message": error_message})
 
 def logout_page(request):
     logout(request)
