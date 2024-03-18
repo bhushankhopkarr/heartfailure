@@ -3,6 +3,7 @@ from datetime import date
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt
 import numpy as np
 # from django.http import HttpResponse, HttpResponseRedirect
 from .models import FormSubmission
@@ -14,10 +15,11 @@ with open("heart/lgbmclf.pkl", 'rb') as file:
     classifier = pickle.load(file)
 
 # Create your views here.
+@csrf_exempt 
 def index(request):
     return render(request, "index.html", {"name": "blacklytning"})
 
-
+@csrf_exempt 
 def register(request):
     if request.method == 'POST':
         form_data = request.POST
@@ -46,7 +48,7 @@ def register(request):
 #         else:
 #             error_message = "Invalid username or password."
 #     return render(request, "login.html", {"error_message": error_message})
-
+@csrf_exempt 
 def login_page(request):
     error_message = None
     
@@ -69,11 +71,12 @@ def login_page(request):
                 error_message = "Invalid username or password."
     
     return render(request, "login.html", {"error_message": error_message})
-
+@csrf_exempt 
 def logout_page(request):
     logout(request)
     return redirect("/heart/login")
 
+@csrf_exempt 
 @login_required
 def predict(request):
     prediction_made = False
@@ -155,7 +158,8 @@ def predict(request):
         })
     else:
         return render(request, "predict.html")
-    
+
+@csrf_exempt   
 @login_required
 def dashboard(request):
     tests = FormSubmission.objects.filter(username = request.user).values()
