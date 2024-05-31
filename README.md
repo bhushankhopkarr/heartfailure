@@ -1,4 +1,3 @@
-```markdown
 # HeartFailure Project
 
 This project is a Django-based application named "HeartFailure". It includes a command-line utility for performing administrative tasks.
@@ -16,7 +15,7 @@ This project is a Django-based application named "HeartFailure". It includes a c
    ```sh
    git clone https://github.com/yourusername/heartfailure.git
    cd heartfailure
-   ```
+
 
 2. **Create a virtual environment:**
 
