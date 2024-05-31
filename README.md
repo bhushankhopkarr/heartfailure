@@ -16,7 +16,6 @@ This project is a Django-based application named "HeartFailure". It includes a c
    git clone https://github.com/yourusername/heartfailure.git
    cd heartfailure
 
-
 2. **Create a virtual environment:**
 
    It is recommended to use a virtual environment to manage dependencies. If you don't have virtualenv installed, you can install it using pip:
