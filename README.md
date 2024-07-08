@@ -4,7 +4,7 @@ This project is a Django-based application named "HeartFailure". It includes a c
 
 ## Requirements
 
-- Python 3.x
+- Python 3.11.5
 - Django
 - Virtual environment tool (optional but recommended)
 
